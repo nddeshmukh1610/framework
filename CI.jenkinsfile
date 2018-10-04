@@ -22,7 +22,7 @@ pipeline{
 							   println "Provided Application is not provisioned, You can deploy below applications"
 							   println "1) Billing"
 							   println "2) testapp"
-							   exit 1
+							   
 							   }
                               }
                     }
