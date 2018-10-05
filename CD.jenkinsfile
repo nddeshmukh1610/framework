@@ -10,20 +10,23 @@ pipeline{
         stage('Deploy Applications'){
                 steps{
                         script{
-						       if("${params.ApplicationName}" == "Billing"){
-                               git url: "https://github.com/nddeshmukh1610/billing.git", branch: 'master'
-                               sh 'sudo cp ${WORKSPACE}/index.html /var/www/html'
-							   }
-							   else if("${params.ApplicationName}" == "testapp"){
-                               git url: "https://github.com/nddeshmukh1610/testapp.git", branch: 'master'
-                               sh 'sudo cp ${WORKSPACE}/index.html /var/www/html'
-							   }
+                              	if("${params.ApplicationName}" == "Billing"){
+                               		sh 'wget http://54.165.75.81:8081/artifactory/xpoc/application.tar'
+			       		sh 'wget http://54.165.75.81:8081/artifactory/xpoc/environment.properties'
+			       		sh 'tar -xvf application.tar .'
+                               		sh 'sudo cp ${WORKSPACE}/index.html /var/www/html'
+				}
+				else if("${params.ApplicationName}" == "testapp"){
+                               		sh 'wget http://54.165.75.81:8081/artifactory/xpoc/application.tar'
+			       		sh 'wget http://54.165.75.81:8081/artifactory/xpoc/environment.properties'
+			       		sh 'tar -xvf application.tar .'
+                               		sh 'sudo cp ${WORKSPACE}/index.html /var/www/html'
+				}
                                else {
-							   println "Provided Application is not provisioned, You can deploy below applications"
-							   println "1) Billing"
-							   println "2) testapp"
-							   
-							   }
+					println "Provided Application is not provisioned, You can deploy below applications"
+					println "1) Billing"
+					println "2) testapp"
+		              }
                               }
                     }
          }
@@ -31,18 +34,18 @@ pipeline{
                 agent { label 'windows' }
                 steps{
                         script{
-                                git url: "https://github.com/nddeshmukh1610/cts.git", branch: 'master'
-                                bat 'cd C:/cognizant-intelligent-test-scripter-1.1-setup/cognizant-intelligent-test-scripter-1.1'
-                                bat 'run.bat -run -project_location "Projects/Test" -scenario "Scenario1" -testcase "TC2" -browser "IE" -standalone_report'
+                               git url: "https://github.com/nddeshmukh1610/cts.git", branch: 'master'
+                               bat 'cd C:/cognizant-intelligent-test-scripter-1.1-setup/cognizant-intelligent-test-scripter-1.1'
+                               bat 'run.bat -run -project_location "Projects/Test" -scenario "Scenario1" -testcase "TC2" -browser "IE" -standalone_report'
                               }
                     }
          }
 		 stage('Upload Application To Artifactory'){
                 steps{
                         script{
-						        sh 'tar -cvf application.tar ${WORKSPACE}'
-                                def artifactory_user = sh(script: 'consul kv get artifactory_user', returnStdout: true)
-								sh 'curl -u '+artifactory_user.trim()+':password -T ${WORKSPACE}/application.tar "http://54.165.75.81:8081/artifactory/xpoc/"'
+			       sh 'tar -cvf application.tar ${WORKSPACE}'
+                               def artifactory_user = sh(script: 'consul kv get artifactory_user', returnStdout: true)
+			       sh 'curl -u '+artifactory_user.trim()+':password -T ${WORKSPACE}/application.tar "http://54.165.75.81:8081/artifactory/xpoc/"'
                               }
                     }
          }
