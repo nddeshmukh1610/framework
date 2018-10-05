@@ -19,10 +19,12 @@ pipeline{
                                		      sudo cp ${WORKSPACE}/index.html /var/www/html'''
 				}
 				else if("${params.ApplicationName}" == "testapp"){
-                               		sh 'wget http://54.165.75.81:8081/artifactory/xpoc/application.tar'
-			       		sh 'wget http://54.165.75.81:8081/artifactory/xpoc/environment.properties'
-			       		sh 'tar -xvf application.tar .'
-                               		sh 'sudo cp ${WORKSPACE}/index.html /var/www/html'
+                               		sh '''cd ${WORKSPACE}
+					      rm -rf *
+					      wget http://54.165.75.81:8081/artifactory/xpoc/application.tar
+			       		      wget http://54.165.75.81:8081/artifactory/xpoc/environment.properties
+			       		      tar -xvf application.tar .
+                               		      sudo cp ${WORKSPACE}/index.html /var/www/html'''
 				}
                                else {
 					println "Provided Application is not provisioned, You can deploy below applications"
@@ -42,14 +44,5 @@ pipeline{
                               }
                     }
          }
-         stage('Upload Application To Artifactory'){
-                steps{
-                        script{
-			       sh 'tar -cvf application.tar ${WORKSPACE}'
-                               def artifactory_user = sh(script: 'consul kv get artifactory_user', returnStdout: true)
-			       sh 'curl -u '+artifactory_user.trim()+':password -T ${WORKSPACE}/application.tar "http://54.165.75.81:8081/artifactory/xpoc/"'
-                              }
-                    }
-         }
-   }
+    }
 }
