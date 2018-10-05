@@ -15,6 +15,7 @@ pipeline{
 					      rm -rf *
 					      wget http://54.165.75.81:8081/artifactory/xpoc/application.tar
 			       		      wget http://54.165.75.81:8081/artifactory/xpoc/environment.properties
+					      ls -ltr 
 			       		      tar -xvf application.tar .
                                		      sudo cp ${WORKSPACE}/index.html /var/www/html'''
 				}
