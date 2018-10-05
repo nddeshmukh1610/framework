@@ -11,10 +11,12 @@ pipeline{
                 steps{
                         script{
                               	if("${params.ApplicationName}" == "Billing"){
-                               		sh 'wget http://54.165.75.81:8081/artifactory/xpoc/application.tar'
-			       		sh 'wget http://54.165.75.81:8081/artifactory/xpoc/environment.properties'
-			       		sh 'tar -xvf application.tar .'
-                               		sh 'sudo cp ${WORKSPACE}/index.html /var/www/html'
+                               		sh '''cd ${WORKSPACE}
+					      rm -rf *
+					      wget http://54.165.75.81:8081/artifactory/xpoc/application.tar
+			       		      wget http://54.165.75.81:8081/artifactory/xpoc/environment.properties
+			       		      tar -xvf application.tar .
+                               		      sudo cp ${WORKSPACE}/index.html /var/www/html'''
 				}
 				else if("${params.ApplicationName}" == "testapp"){
                                		sh 'wget http://54.165.75.81:8081/artifactory/xpoc/application.tar'
@@ -40,7 +42,7 @@ pipeline{
                               }
                     }
          }
-		 stage('Upload Application To Artifactory'){
+         stage('Upload Application To Artifactory'){
                 steps{
                         script{
 			       sh 'tar -cvf application.tar ${WORKSPACE}'
