@@ -40,7 +40,8 @@ pipeline{
 		 stage('Upload Application To Artifactory'){
                 steps{
                         script{
-						        sh 'tar -cvf application.tar ${WORKSPACE}'
+						        sh '''cd ${WORKSPACE} 
+							      tar -cvf application.tar .'''
                                 def artifactory_user = sh(script: 'consul kv get artifactory_user', returnStdout: true)
 								sh 'curl -u '+artifactory_user.trim()+':password -T ${WORKSPACE}/application.tar "http://54.165.75.81:8081/artifactory/xpoc/"'
                               }
