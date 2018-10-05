@@ -10,21 +10,20 @@ pipeline{
         stage('Deploy Applications'){
                 steps{
                         script{
-						       if("${params.ApplicationName}" == "Billing"){
-                               git url: "https://github.com/nddeshmukh1610/billing.git", branch: 'master'
-                               sh 'sudo cp ${WORKSPACE}/index.html /var/www/html'
-							   }
-							   else if("${params.ApplicationName}" == "testapp"){
-                               git url: "https://github.com/nddeshmukh1610/testapp.git", branch: 'master'
-                               sh 'sudo cp ${WORKSPACE}/index.html /var/www/html'
-							   }
+		 	      if("${params.ApplicationName}" == "Billing"){
+                              		git url: "https://github.com/nddeshmukh1610/billing.git", branch: 'master'
+                               		sh 'sudo cp ${WORKSPACE}/index.html /var/www/html'
+	                       }
+                               else if("${params.ApplicationName}" == "testapp"){
+                                        git url: "https://github.com/nddeshmukh1610/testapp.git", branch: 'master'
+                                        sh 'sudo cp ${WORKSPACE}/${WORKSPACE}/index.html /var/www/html'
+	                       }
                                else {
-							   println "Provided Application is not provisioned, You can deploy below applications"
-							   println "1) Billing"
-							   println "2) testapp"
-							   
-							   }
-                              }
+			                println "Provided Application is not provisioned, You can deploy below applications"
+					println "1) Billing"
+					println "2) testapp"
+	                       }
+                         }
                     }
          }
         stage('Test Application'){
