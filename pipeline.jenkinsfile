@@ -10,6 +10,7 @@ pipeline{
         stage('Deploy Applications'){
                 steps{
                         script{
+			      println args[0] 
 		 	      if("${params.ApplicationName}" == "Billing"){
                               		git url: "https://github.com/nddeshmukh1610/billing.git", branch: 'master'
                                		sh 'sudo cp ${WORKSPACE}/index.html /var/www/html'
