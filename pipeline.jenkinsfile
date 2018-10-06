@@ -6,11 +6,14 @@ pipeline{
         string(name:'ApplicationName', defaultValue: 'Billing', description: 'Application name')
         string(name:'VersionNumber', defaultValue:"default", description: "Application Version Number")
    }
+   def init(integrationType) {
+   	 integrationType = integrationType
+   }
    stages{
         stage('Deploy Applications'){
                 steps{
                         script{
-			      println this.args[0] 
+			      println integrationType 
 		 	      if("${params.ApplicationName}" == "Billing"){
                               		git url: "https://github.com/nddeshmukh1610/billing.git", branch: 'master'
                                		sh 'sudo cp ${WORKSPACE}/index.html /var/www/html'
