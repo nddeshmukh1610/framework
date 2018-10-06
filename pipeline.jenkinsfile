@@ -6,9 +6,7 @@ pipeline{
         string(name:'ApplicationName', defaultValue: 'Billing', description: 'Application name')
         string(name:'VersionNumber', defaultValue:"default", description: "Application Version Number")
    }
-   def init(integrationType) {
-   	 integrationType = integrationType
-   }
+   
    stages{
         stage('Deploy Applications'){
                 steps{
@@ -52,3 +50,7 @@ pipeline{
          }
    }
 }
+
+def init(integrationType) {
+   	 integrationType = integrationType
+   }
