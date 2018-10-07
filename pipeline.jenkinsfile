@@ -2,9 +2,13 @@ pipeline{
   agent {
         label 'master'
     }
+    stages{
+        stage('Deploy Applications'){
+                steps{
+                        script{
+			      sh "echo pType"
+			      }
+		      }
+         }
 }
 
-def init(integrationType) {
-   	 integrationType = integrationType
-	 println integrationType
-   }
