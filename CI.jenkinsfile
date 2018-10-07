@@ -33,7 +33,7 @@ pipeline{
                                 git url: "https://github.com/nddeshmukh1610/dev-test-tool.git", branch: 'master'
                                 def appName = "${params.ApplicationName}"
 				println appName
-				def appName1 = ""Projects/$appName""
+				def appName1 = "Projects//$appName"
 				println appName1
 				bat '''cd cognizant-intelligent-test-scripter-1.1-setup
                                        run.bat -run -project_location "Projects/Test" -scenario "Scenario1" -testcase "TC2" -browser "IE" -standalone_report'''
