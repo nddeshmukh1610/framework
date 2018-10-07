@@ -31,8 +31,9 @@ pipeline{
                 steps{
                         script{
                                 git url: "https://github.com/nddeshmukh1610/dev-test-tool.git", branch: 'master'
-                                bat 'cd cognizant-intelligent-test-scripter-1.1-setup'
-				def appName = "${params.ApplicationName}"
+                                def appName = "${params.ApplicationName}"
+				println appName
+				bat 'cd cognizant-intelligent-test-scripter-1.1-setup'
                                 bat 'run.bat -run -project_location "Projects/Test" -scenario "Scenario1" -testcase "TC2" -browser "IE" -standalone_report'
                               }
                     }
