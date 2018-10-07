@@ -6,7 +6,7 @@ pipeline{
         stage('Deploy Applications'){
                 steps{
                         script{
-			      sh "echo pType"
+			      println pType
 			      }
 		      }
          }
