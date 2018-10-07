@@ -35,7 +35,7 @@ pipeline{
 				println appName
 				def appName1 = "\"Projects/$appName\""
 				println appName1
-				sh 'echo appName1'
+				
 				bat '''cd cognizant-intelligent-test-scripter-1.1-setup
                                        run.bat -run -project_location ${appName1} -scenario "Scenario1" -testcase "TC2" -browser "IE" -standalone_report'''
                               }
