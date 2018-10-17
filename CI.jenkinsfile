@@ -35,9 +35,10 @@ pipeline{
 				println appName
 				def appName1 = "\"Projects/$appName\""
 				println appName1
+				env.APP_NAME = 'Billing'
 				bat 'set application="${params.ApplicationName}"'
 				bat '''cd cognizant-intelligent-test-scripter-1.1-setup
-                                       run.bat -run -project_location %application% -scenario "Scenario1" -testcase "TC2" -browser "IE" -standalone_report'''
+                                       run.bat -run -project_location $APP_NAME -scenario "Scenario1" -testcase "TC2" -browser "IE" -standalone_report'''
         
 				
                       }
