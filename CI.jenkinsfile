@@ -6,9 +6,7 @@ pipeline{
         string(name:'ApplicationName', defaultValue: 'Billing', description: 'Application name')
         string(name:'VersionNumber', defaultValue:"default", description: "Application Version Number")
    }
-   environment { 
-        APP_NAME = 'Billing'
-    }
+  
    stages{
         stage('Deploy Applications'){
                 steps{
@@ -31,6 +29,10 @@ pipeline{
          }
         stage('Test Application'){
                 agent { label 'windows' }
+		 environment { 
+		 	   def appName = "${params.ApplicationName}"
+     			   APP_NAME = "\"Projects/$appName\""
+    		}	
                 steps{
                         script{
                                 git url: "https://github.com/nddeshmukh1610/dev-test-tool.git", branch: 'master'
