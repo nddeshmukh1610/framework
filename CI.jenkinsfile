@@ -36,7 +36,7 @@ pipeline{
 				def appName1 = "\"Projects/$appName\""
 				println appName1
 				env.APPNAME = appName1
-				echo env.APPNAME > output.txt
+				sh 'echo env.APPNAME > output.txt'
 				
                       }
                     }
