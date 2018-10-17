@@ -36,10 +36,8 @@ pipeline{
 				def appName1 = "\"Projects/$appName\""
 				println appName1
 				env.APPNAME = appName1
-				echo env.APPNAME 
-				bat 'dir'
-				bat '''set FOO="env.APPNAME"
-					echo %FOO%'''
+				echo env.APPNAME 1> output.txt
+				
                       }
                     }
          }
