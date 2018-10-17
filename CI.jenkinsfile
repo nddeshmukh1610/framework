@@ -37,8 +37,8 @@ pipeline{
 				println appName1
 				env.APPNAME = appName1
 				println env.APPNAME 
-				bat 'set FOO="env.APPNAME"'
-				bat 'echo %FOO%'
+				bat '''set FOO="env.APPNAME"
+					echo %FOO%'''
 				bat '''cd cognizant-intelligent-test-scripter-1.1-setup
                                        run.bat -run -project_location env.APPNAME -scenario "Scenario1" -testcase "TC2" -browser "IE" -standalone_report'''
                               }
