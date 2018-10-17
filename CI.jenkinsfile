@@ -31,17 +31,12 @@ pipeline{
                 agent { label 'windows' }
 		 environment { 
 		 	   def appName = "${params.ApplicationName}"
-     			   APP_NAME = "\"Projects/$appName\""
+     			   APP_NAME = "\"Projects\$appName\""
     		}	
                 steps{
                         script{
                                 git url: "https://github.com/nddeshmukh1610/dev-test-tool.git", branch: 'master'
                                 def appName = "${params.ApplicationName}"
-				println appName
-				def appName1 = "\"Projects/$appName\""
-				println appName1
-				println env.APP_NAME
-				bat 'echo  %APP_NAME%'
 				bat '''cd cognizant-intelligent-test-scripter-1.1-setup
                                        run.bat -run -project_location  %APP_NAME% -scenario "Scenario1" -testcase "TC2" -browser "IE" -standalone_report'''
         
