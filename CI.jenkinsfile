@@ -29,10 +29,7 @@ pipeline{
          }
         stage('Test Application'){
                 agent { label 'windows' }
-		 environment { 
-		 	   def appName = "${params.ApplicationName}"
-     			   APP_NAME = "\"Projects\\$appName\""
-    		}	
+		 
                 steps{
                         script{
                                 git url: "https://github.com/nddeshmukh1610/dev-test-tool.git", branch: 'master'
