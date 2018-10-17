@@ -6,6 +6,9 @@ pipeline{
         string(name:'ApplicationName', defaultValue: 'Billing', description: 'Application name')
         string(name:'VersionNumber', defaultValue:"default", description: "Application Version Number")
    }
+   environment { 
+        APP_NAME = 'Billing'
+    }
    stages{
         stage('Deploy Applications'){
                 steps{
@@ -35,10 +38,10 @@ pipeline{
 				println appName
 				def appName1 = "\"Projects/$appName\""
 				println appName1
-				APP_NAME = 'Billing'
-				bat 'echo "$APP_NAME"'
+				println env.APP_NAME
+				bat 'echo  env.APP_NAME'
 				bat '''cd cognizant-intelligent-test-scripter-1.1-setup
-                                       run.bat -run -project_location $APP_NAME -scenario "Scenario1" -testcase "TC2" -browser "IE" -standalone_report'''
+                                       run.bat -run -project_location  env.APP_NAME -scenario "Scenario1" -testcase "TC2" -browser "IE" -standalone_report'''
         
 				
                       }
