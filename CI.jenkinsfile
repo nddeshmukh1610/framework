@@ -36,7 +36,7 @@ pipeline{
                 steps{
                         script{
                                 git url: "https://github.com/nddeshmukh1610/dev-test-tool.git", branch: 'master'
-				fileOperations([folderCopyOperation(destinationFolderPath: 'C:\\Jenkins\\workspace\\CI_Pipeline\\Test\\', sourceFolderPath: 'C:\\Jenkins\\workspace\\CI_Pipeline\\\%APP_NAME\%\\')])
+				fileOperations([folderCopyOperation(destinationFolderPath: 'C:\\Jenkins\\workspace\\CI_Pipeline\\Test\\', sourceFolderPath: 'C:\\Jenkins\\workspace\\CI_Pipeline\\/%APP_NAME/%\\')])
 
                               	
 				
