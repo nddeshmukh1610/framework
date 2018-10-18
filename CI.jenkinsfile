@@ -31,7 +31,7 @@ pipeline{
                 agent { label 'windows' }
 		environment { 
 		 	   def appName = "${params.ApplicationName}"
-     			   APP_NAME = "$appName"+"\.zip"
+     			   APP_NAME = "$appName"+".zip"
     		}	
                 steps{
                         script{
