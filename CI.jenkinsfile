@@ -36,7 +36,8 @@ pipeline{
                 steps{
                         script{
                                 git url: "https://github.com/nddeshmukh1610/dev-test-tool.git", branch: 'master'
-				fileOperations([fileCopyOperation(destination: 'C:\\Jenkins\\workspace\\CI_Pipeline\\Test', source: 'C:\\Jenkins\\workspace\\CI_Pipeline\\billing\\index.html')])
+				fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'C:\\Jenkins\\workspace\\CI_Pipeline\\billing\\index.html', targetLocation: 'C:\\Jenkins\\workspace\\CI_Pipeline\\Test')])
+
                               	
 				
                       }
