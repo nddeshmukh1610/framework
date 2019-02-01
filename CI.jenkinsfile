@@ -27,7 +27,7 @@ pipeline{
                          }
                     }
          }
-        stage('Test Application'){
+        stage('Test Applicationn'){
                 agent { label 'windows' }
 		environment { 
 		 	   def appName = "${params.ApplicationName}"
