@@ -1,4 +1,2 @@
 # framework
-Hello I'm testing githook
-1..2..
-gfjg
+Hello I'm testing githook release
