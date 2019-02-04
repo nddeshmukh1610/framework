@@ -1,2 +1,1 @@
-# framework
-Hello I'm testing githook test
+Hello I'm testing githook release
